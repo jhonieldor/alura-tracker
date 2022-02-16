@@ -21,7 +21,9 @@
               :value="projeto.id"
               v-for="projeto in projetos"
               :key="projeto.id"
-            > {{ projeto.nome }} </option>
+            >
+              {{ projeto.nome }}
+            </option>
           </select>
         </div>
       </div>
@@ -33,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent } from "vue";
+import { computed, defineComponent, ref } from "vue";
 import Temporizador from "./Temporizador.vue";
 import { useStore } from "vuex";
 import { key } from "@/store";
@@ -44,28 +46,27 @@ export default defineComponent({
   components: {
     Temporizador,
   },
-  data() {
-    return {
-      descricao: '',
-      idProjeto: ''
-    };
-  },
-  methods: {
-    finalizarTarefa(tempoDecorrido: number): void {
-      console.log("tempo da tarefa", tempoDecorrido);
-      console.log("descrição da tarefa", this.descricao);
-      this.$emit("aoSalvarTarefa", {
-        duracaoEmSegundos: tempoDecorrido,
-        descricao: this.descricao,
-        projeto: this.projetos.find(proj => proj.id == this.idProjeto)
-      });
-      this.descricao = "";
-    },
-  },
-  setup() {
+ 
+  setup(props, { emit }) {
     const store = useStore(key);
+    const descricao = ref("");
+    const idProjeto = ref("");
+    const projetos = computed(() => store.state.projeto.projetos);
+    const finalizarTarefa = (tempoDecorrido: number): void => {
+      console.log('finalizarTarefa...')
+      emit("aoSalvarTarefa", {
+        duracaoEmSegundos: tempoDecorrido,
+        descricao: descricao.value,
+        projeto: projetos.value.find((proj) => proj.id == idProjeto.value),
+      });
+      descricao.value = "";
+    };
+
     return {
-      projetos: computed(() => store.state.projetos),
+      descricao,
+      idProjeto,
+      projetos,
+      finalizarTarefa,
     };
   },
 });

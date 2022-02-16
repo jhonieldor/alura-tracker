@@ -1,0 +1,63 @@
+{
+  "projetos": [
+    {
+      "id": 1,
+      "nome": "Alura Tracker"
+    },
+    {
+      "id": 2,
+      "nome": "Bytebank "
+    },
+    {
+      "nome": "Serverless",
+      "id": 3
+    }
+  ],
+  "tarefas": [
+    {
+      "id": 1,
+      "descricao": "Configuração do ambiente",
+      "duracaoEmSegundos": 120,
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker 3.0"
+      }
+    },
+    {
+      "duracaoEmSegundos": 8,
+      "descricao": "Refactoring do Vuex",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 2
+    },
+    {
+      "duracaoEmSegundos": 2,
+      "descricao": "Refatoração de Componentes",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 3
+    },
+    {
+      "duracaoEmSegundos": 6,
+      "descricao": "Teste X",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 4
+    },
+    {
+      "duracaoEmSegundos": 3,
+      "descricao": "Teste 3",
+      "projeto": {
+        "id": 1,
+        "nome": "Alura Tracker"
+      },
+      "id": 5
+    }
+  ]
+}
